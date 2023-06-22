@@ -6,7 +6,7 @@
                     <img src="/{{ product.imageUrl }}" class="img-responsive" width="400px">
                     <h3>{{ product.name }}</h3>
                     <div class="price">$19.22</div>
-                    <a href="shopping-detail.html" class="primary-btn">Add to cart</a>
+                    <button (click)="addToCart(product)" class="btn btn-primary btn-sm">Add to cart</button>
                     <hr>
                     <h4>Product Description</h4>
                     <p>{{product.description}} </p>

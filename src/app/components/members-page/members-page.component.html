@@ -1,0 +1,41 @@
+<div class="main-content">
+    <div class="container">
+        <div align="center" class="bg-light col-md-12 p-5">
+            <h2 class="pb-3">Voucher List</h2>
+            <table class="table table-bordered">
+
+                <tr class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Checking</th>
+                    <th scope="col">Date Create</th>
+                </tr>
+
+
+
+                <tr *ngFor="let voucher of listVouchers">
+                    <td scope="row" class="text-center">{{voucher.index}}</td>
+                    <td class="text-center">{{voucher.code}}</td>
+                    <td class="text-center">
+                        <ng-container *ngIf="voucher.status">
+                            Used
+                        </ng-container>
+                        <ng-container *ngIf="!voucher.status">
+                            Available
+                        </ng-container>
+                    </td>
+                    <td class="text-center">{{voucher.value}}%</td>
+                    <td class="text-center">
+                        <a rel="stylesheet" href="{{voucher.link}}" target="_blank">Polyson Scan</a>
+                    </td>
+                    <td class="text-center">{{voucher.dateCreated| date:'medium'}}</td>
+                </tr>
+
+
+            </table>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,23 @@
+<div class="container p-3">
+    <h2 class="text-center fw-bold display-4">Order History</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Date Created:</strong> {{orderDetail?.dateCreated | date:'medium'}}</li>
+        <li class="list-group-item"><strong>Shipping Address:</strong> {{shippingAddress}}</li>
+        <li class="list-group-item"><strong>Billing Address:</strong> {{billingAddress}}</li>
+        <li class="list-group-item"><strong>Items List:</strong>
+            <ol class="list-group list-group-numbered">
+                <li *ngFor="let product of orderItems" class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                        <div><strong>Unit price:</strong> {{product.unitPrice}}</div>
+                        <div><strong>Quantity:</strong> {{product.quantity}}</div>
+                    </div>
+                </li>
+            </ol>
+        </li>
+        <li class="list-group-item"><strong>Total Quantity:</strong> {{orderDetail?.totalQuantity}}</li>
+        <li class="list-group-item"><strong>Total Price:</strong> {{orderDetail?.totalPrice}}</li>
+    </ul>
+    <div class="text-center mt-3">
+        <a href="#" class="btn btn-info">Back</a>
+    </div>
+</div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem } from 'src/app/common/cart-item';
 import { Product } from 'src/app/common/product';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -24,7 +26,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartService: CartService
   ) {}
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -54,7 +57,7 @@ export class ProductListComponent implements OnInit {
         this.thePageSize,
         theKeyWord
       )
-      .subscribe(this.processReult());
+      .subscribe(this.processResult());
   }
   handleListProducts() {
     //check if "id" parameter is available
@@ -93,9 +96,9 @@ export class ProductListComponent implements OnInit {
         this.thePageSize,
         this.currentCategoryId
       )
-      .subscribe(this.processReult());
+      .subscribe(this.processResult());
   }
-  processReult() {
+  processResult() {
     return (data: {
       _embedded: { products: Product[] };
       page: { number: number; size: number; totalElements: number };
@@ -112,6 +115,9 @@ export class ProductListComponent implements OnInit {
     this.listProducts();
   }
   addToCart(theProduct: Product) {
-    console.log(`adding ${theProduct.name}; ${theProduct.unitPrice}`);
+    // console.log(`adding ${theProduct.name}; ${theProduct.unitPrice}`);
+
+    const theCartItem = new CartItem(theProduct);
+    this.cartService.addToCart(theCartItem);
   }
 }
